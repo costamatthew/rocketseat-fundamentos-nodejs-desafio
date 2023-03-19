@@ -23,6 +23,10 @@ export class Services {
   async postService(req, res) {
     const { title, description } = req.body
 
+    if (!title || !description) {
+      return res.writeHead(400).end()
+    }
+
     const task = {
       id: randomUUID(),
       title,
@@ -39,6 +43,13 @@ export class Services {
 
   async putService(req, res) {
     const { id } = req.params
+
+    if (!database.validateID('tasks', id)) {
+      return res
+        .writeHead(400)
+        .end(JSON.stringifyringify({ message: 'ID não existe' }))
+    }
+
     const { title, description } = req.body
 
     switch (req.body) {
@@ -68,6 +79,12 @@ export class Services {
   async deleteService(req, res) {
     const { id } = req.params
 
+    if (!database.validateID('tasks', id)) {
+      return res
+        .writeHead(400)
+        .end(JSON.stringify({ message: 'ID não existe' }))
+    }
+
     database.delete('tasks', id)
 
     return res.writeHead(204).end()
@@ -76,7 +93,14 @@ export class Services {
   async patchService(req, res) {
     const { id } = req.params
 
-    database.update('tasks', id, {
+    if (!database.validateID('tasks', id)) {
+      return res
+        .writeHead(400)
+        .end(JSON.stringify({ message: 'ID não existe' }))
+    }
+
+    database.updateStatus('tasks', id, {
+      updated_at: Date.now(),
       completed_at: Date.now(),
     })
 

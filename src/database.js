@@ -62,4 +62,29 @@ export class Database {
       this.#persist()
     }
   }
+
+  updateStatus(table, id, data) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id)
+    let oldData = this.#database[table][rowIndex]
+
+    const newData = {
+      ...oldData,
+      ...data,
+    }
+
+    if (rowIndex > -1) {
+      this.#database[table][rowIndex] = { id, ...newData }
+      this.#persist()
+    }
+  }
+
+  validateID(table, id) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id)
+
+    if (rowIndex > -1) {
+      return true
+    }
+
+    return false
+  }
 }

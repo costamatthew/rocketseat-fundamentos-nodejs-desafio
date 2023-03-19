@@ -1,0 +1,20 @@
+{
+  "name": "rocketseat-fundamentos-nodejs-desafio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/costamatthew/rocketseat-fundamentos-nodejs-desafio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/costamatthew/rocketseat-fundamentos-nodejs-desafio/issues"
+  },
+  "homepage": "https://github.com/costamatthew/rocketseat-fundamentos-nodejs-desafio#readme"
+}
